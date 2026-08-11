@@ -10,14 +10,21 @@ require_once __DIR__ . '/../includes/header.php';
 
 ?>
 <script>
-    let partida = {
+    let partida_save = {
     personagens: [],
     dificuldade: null,
     local: null
 };
 </script>
 
-<div class="search-bar-container2">
+<div class="containerdosave">
+    <div class="caixadosave" onclick="">
+        <span class="iconesdascaixasdosave">ESPACO VAZIO</span>
+    </div> 
+
+</div>    
+
+<div class="search-bar-container2" style="display: none;">
   <div class="search-wrapper2">
     <span class="search-icon2">🔍</span>
 
@@ -35,7 +42,7 @@ require_once __DIR__ . '/../includes/header.php';
   <div id="searchResultCount2" class="search-result-count2"></div>
 </div>
 
-<div class="table-wrapper2">
+<div class="table-wrapper2" style="display: none;">
 
 <table class="data-table2" id="personagemTable2">
 
@@ -87,7 +94,7 @@ require_once __DIR__ . '/../includes/header.php';
 
 </div>
 
-<div class="selected-area2">
+<div class="selected-area2" style="display: none;">
 
     <h2>PERSONAGENS SELECIONADOS</h2>
 

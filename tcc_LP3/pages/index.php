@@ -14,7 +14,7 @@ require_once __DIR__ . '/../includes/header.php';
   
    <?php if (!empty($personagens)): ?>
     <a href="partida_create.php" class="btn btn-success">
-      Iniciar Partida
+      JOGAR
     </a>
   <?php endif; ?>
 </div>
