@@ -1,0 +1,40 @@
+⚔️ Ataques do Boss: Rei das Dunas Eternas
+
+1. Tempestade de Areia
+
+Dano: Médio
+Levanta uma enorme tempestade de areia.
+Atinge todos os inimigos.
+Reduz a Precisão dos alvos por 2 turnos.
+
+2. Presas das Areias
+
+Dano: Alto
+Faz espinhos de areia endurecida surgirem sob um alvo.
+40% de chance de causar Sangramento por 3 turnos.
+
+3. Escorpião do Deserto
+
+Dano: Muito Alto
+Invoca uma cauda gigante de areia para atacar um único alvo.
+Se o golpe for crítico, aplica Veneno por 2 turnos.
+🌵 Poderes Únicos
+
+1. Corpo de Areia
+
+Passivo.
+Sempre que sofre dano, há 20% de chance de reduzir esse dano pela metade.
+Ataques físicos têm dificuldade em atingir seu corpo instável.
+
+2. Sol Escaldante
+
+Recarga: 4 turnos.
+O calor do deserto aumenta drasticamente.
+Todos os inimigos recebem dano leve ao final de cada turno durante 3 turnos.
+
+3. Enterrado nas Dunas
+
+Recarga: 5 turnos.
+O chefe mergulha sob a areia e desaparece por 1 turno.
+Nesse período não pode ser atacado.
+Ao retornar, realiza automaticamente um ataque surpresa que causa dano alto em todos os inimigos.

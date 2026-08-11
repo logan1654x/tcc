@@ -1,0 +1,40 @@
+1. Chicote de Vinhas
+
+Dano: Alto
+Vinhas vivas surgem do chão e golpeiam um alvo.
+35% de chance de Imobilizar o inimigo por 1 turno.
+
+2. Investida do Carvalho
+
+Dano: Muito Alto
+O Guardião avança com o peso de uma árvore centenária.
+Ignora 40% da defesa do alvo.
+
+3. Esporos Tóxicos
+
+Dano: Médio
+Espalha uma nuvem de esporos venenosos pela arena.
+Atinge todos os inimigos e aplica Veneno por 2 turnos.
+🌳 Poderes Únicos
+
+1. Casca Milenar
+
+Passivo.
+Recebe 25% menos dano de ataques físicos.
+Quanto menor sua vida, mais resistente sua casca se torna.
+
+2. Benção da Natureza
+
+Recarga: 4 turnos.
+As raízes da floresta restauram sua energia.
+Recupera 15% da vida máxima.
+Remove efeitos negativos ativos.
+
+3. Despertar da Floresta
+
+Recarga: 5 turnos.
+Árvores e raízes gigantes despertam ao redor do campo.
+Durante 3 turnos:
+O chefe causa 25% mais dano.
+Todos os jogadores têm sua velocidade reduzida.
+Qualquer jogador que atacar tem 20% de chance de ser atingido por raízes e sofrer dano adicional.

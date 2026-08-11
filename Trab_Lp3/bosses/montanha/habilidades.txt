@@ -1,0 +1,36 @@
+1. Pisão Sísmico
+
+Dano: Alto
+O Pé-Grande ergue o pé gigantesco e esmaga o chão.
+Causa dano em todos os jogadores.
+30% de chance de aplicar Atordoamento por 1 turno.
+
+2. Arremesso de Rocha
+
+Dano: Muito Alto
+Arranca uma pedra da montanha e lança em um único alvo.
+Ignora 50% da defesa do inimigo.
+
+3. Golpe da Avalanche
+
+Dano: Médio
+Provoca uma pequena avalanche.
+Atinge todos os jogadores e reduz as habilidades deles por 2 turnos.
+
+🌨️ Poderes Únicos
+
+1. Pele de Granito
+
+Passivo.
+Recebe 25% menos dano de todos os ataques físicos.
+
+2. Fúria das Alturas
+
+Quando sua vida fica abaixo de 50%, entra em fúria.
+Ganha +50% de dano e realiza dois ataques por turno.
+
+3 Coração da Montanha
+Recarga: 5 turnos.
+O Pé-Grande absorve a energia das montanhas ao redor.
+Recupera 20% da vida máxima.
+Durante os próximos 2 turnos, recebe 50% menos dano.

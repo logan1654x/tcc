@@ -1,0 +1,333 @@
+const bosses = {
+
+    deserto:{
+
+
+        nome:"Rei das Dunas Eternas",
+
+        habilidades:[
+
+
+            {
+                nome:"Tempestade de Areia",
+
+                tipo:"ataque_area",
+
+                dano:20,
+
+                alvos:3,
+
+                efeito:"Reduz Precisão por 2 turnos",
+
+                descricao:"Levanta uma enorme tempestade de areia."
+            },
+
+
+            {
+                nome:"Presas das Areias",
+
+                tipo:"ataque",
+
+                dano:35,
+
+                alvos:1,
+
+                efeito:"40% chance de Sangramento por 3 turnos",
+
+                descricao:"Espinhos de areia endurecida surgem sob um alvo."
+            },
+
+
+            {
+                nome:"Escorpião do Deserto",
+
+                tipo:"ataque",
+
+                dano:50,
+
+                alvos:1,
+
+                efeito:"Crítico aplica Veneno por 2 turnos",
+
+                descricao:"Invoca uma cauda gigante de areia."
+            },
+
+
+            {
+                nome:"Corpo de Areia",
+
+                tipo:"passiva",
+
+                dano:0,
+
+                alvos:0,
+
+                efeito:"20% chance de reduzir dano recebido pela metade",
+
+                descricao:"Seu corpo instável dificulta ataques físicos."
+            },
+
+
+            {
+                nome:"Sol Escaldante",
+
+                tipo:"dano_turno",
+
+                dano:10,
+
+                alvos:3,
+
+                duracao:3,
+
+                recarga:4,
+
+                efeito:"Todos recebem dano no final do turno",
+
+                descricao:"O calor do deserto aumenta drasticamente."
+            },
+
+
+            {
+                nome:"Enterrado nas Dunas",
+
+                tipo:"ataque_area",
+
+                dano:45,
+
+                alvos:3,
+
+                recarga:5,
+
+                efeito:"Fica invulnerável 1 turno e retorna atacando",
+
+                descricao:"Mergulha na areia e volta com ataque surpresa."
+            }
+
+
+        ]
+
+    },
+
+
+
+
+
+    montanha:{
+
+
+        nome:"Pé-Grande",
+
+
+        habilidades:[
+
+
+            {
+                nome:"Pisão Sísmico",
+
+                tipo:"ataque_area",
+
+                dano:30,
+
+                alvos:3,
+
+                efeito:"30% chance de Atordoamento por 1 turno",
+
+                descricao:"Esmaga o chão com seu pé gigante."
+            },
+
+
+            {
+                nome:"Arremesso de Rocha",
+
+                tipo:"ataque",
+
+                dano:55,
+
+                alvos:1,
+
+                efeito:"Ignora 50% da defesa",
+
+                descricao:"Lança uma pedra gigante em um alvo."
+            },
+
+
+            {
+                nome:"Golpe da Avalanche",
+
+                tipo:"ataque_area",
+
+                dano:25,
+
+                alvos:3,
+
+                efeito:"Reduz habilidades por 2 turnos",
+
+                descricao:"Provoca uma avalanche."
+            },
+
+
+            {
+                nome:"Pele de Granito",
+
+                tipo:"passiva",
+
+                dano:0,
+
+                alvos:0,
+
+                efeito:"Recebe 25% menos dano físico",
+
+                descricao:"Sua pele fica extremamente resistente."
+            },
+
+
+            {
+                nome:"Fúria das Alturas",
+
+                tipo:"buff",
+
+                dano:0,
+
+                alvos:0,
+
+                efeito:"Abaixo de 50% de vida ganha +50% dano e 2 ataques",
+
+                descricao:"Entra em estado de fúria."
+            },
+
+
+            {
+                nome:"Coração da Montanha",
+
+                tipo:"cura_buff",
+
+                cura:40,
+
+                alvos:1,
+
+                recarga:5,
+
+                efeito:"Recupera 20% da vida e reduz dano em 50%",
+
+                descricao:"Absorve energia das montanhas."
+            }
+
+
+        ]
+
+    },
+
+
+
+
+
+    floresta:{
+
+
+        nome:"Guardião da Floresta",
+
+
+        habilidades:[
+
+
+            {
+                nome:"Chicote de Vinhas",
+
+                tipo:"ataque",
+
+                dano:40,
+
+                alvos:1,
+
+                efeito:"35% chance de Imobilizar por 1 turno",
+
+                descricao:"Vinhas atacam um inimigo."
+            },
+
+
+            {
+                nome:"Investida do Carvalho",
+
+                tipo:"ataque",
+
+                dano:60,
+
+                alvos:1,
+
+                efeito:"Ignora 40% da defesa",
+
+                descricao:"Avança com o peso de uma árvore."
+            },
+
+
+            {
+                nome:"Esporos Tóxicos",
+
+                tipo:"ataque_area",
+
+                dano:20,
+
+                alvos:3,
+
+                efeito:"Aplica Veneno por 2 turnos",
+
+                descricao:"Espalha veneno pela arena."
+            },
+
+
+            {
+                nome:"Casca Milenar",
+
+                tipo:"passiva",
+
+                dano:0,
+
+                alvos:0,
+
+                efeito:"Recebe 25% menos dano físico",
+
+                descricao:"Sua casca fica mais resistente."
+            },
+
+
+            {
+                nome:"Benção da Natureza",
+
+                tipo:"cura",
+
+                cura:30,
+
+                alvos:1,
+
+                recarga:4,
+
+                efeito:"Remove efeitos negativos",
+
+                descricao:"As raízes restauram sua energia."
+            },
+
+
+            {
+                nome:"Despertar da Floresta",
+
+                tipo:"buff_area",
+
+                dano:0,
+
+                alvos:3,
+
+                duracao:3,
+
+                recarga:5,
+
+                efeito:"Boss ganha +25% dano e jogadores perdem velocidade",
+
+                descricao:"A floresta desperta ao redor do campo."
+            }
+
+
+        ]
+
+    }
+
+};
