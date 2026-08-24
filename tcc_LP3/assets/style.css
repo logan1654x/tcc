@@ -1830,3 +1830,312 @@ body.montanha {
         max-width: 350px;
     }
 }
+
+/* =========================================================
+   MAPA
+========================================================= */
+
+html,
+body {
+
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+}
+
+
+#mapa {
+
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
+   IMAGEM DO MAPA
+========================================================= */
+
+#imagem_mapa {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    z-index: 1;
+
+}
+
+
+/* =========================================================
+   CAMINHOS
+========================================================= */
+
+#caminhos {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   PONTOS
+========================================================= */
+
+#pontos {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+}
+
+
+.ponto_mapa {
+
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    transform: translate(-50%, -50%);
+
+    background: #ffffff;
+
+    border: 2px solid #000000;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,0.8);
+
+}
+
+
+/* =========================================================
+   PERSONAGEM
+========================================================= */
+
+#personagem_mapa {
+
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 10;
+
+    transition:
+
+        left 0.25s ease,
+
+        top 0.25s ease;
+
+    pointer-events: none;
+
+}
+
+
+#personagem_mapa img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+}
+
+
+/* =========================================================
+   COORDENADAS
+========================================================= */
+
+#coordenadas {
+
+    position: absolute;
+
+    top: 20px;
+    left: 20px;
+
+    z-index: 20;
+
+    padding: 10px 15px;
+
+    color: white;
+
+    background: rgba(0,0,0,0.7);
+
+    border-radius: 8px;
+
+    font-family: Arial, sans-serif;
+
+}
+
+
+/* =========================================================
+   CONTROLES
+========================================================= */
+
+#controles_mapa {
+
+    position: absolute;
+
+    bottom: 20px;
+    left: 20px;
+
+    z-index: 20;
+
+    padding: 10px 20px;
+
+    color: white;
+
+    background: rgba(0,0,0,0.7);
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+}
+
+
+#controles_mapa p {
+
+    margin: 3px;
+
+}
+
+
+/* =========================================================
+   JANELA DO BIOMA
+========================================================= */
+
+#info_bioma {
+
+    display: none;
+
+    position: absolute;
+
+    z-index: 30;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 350px;
+
+    padding: 25px;
+
+    background: rgba(0,0,0,0.92);
+
+    color: white;
+
+    border: 2px solid #ffffff;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 30px rgba(0,0,0,0.8);
+
+}
+
+
+#info_bioma h2 {
+
+    margin-top: 0;
+
+    color: #ffd700;
+
+}
+
+
+#botoes_bioma {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 20px;
+
+}
+
+
+#botoes_bioma button {
+
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+}
+
+
+#entrar_bioma {
+
+    background: #2b7a3e;
+
+    color: white;
+
+}
+
+
+#fechar_bioma {
+
+    background: #555;
+
+    color: white;
+
+}
+
+
+#entrar_bioma:hover {
+
+    background: #3da957;
+
+}
+
+
+#fechar_bioma:hover {
+
+    background: #777;
+
+}

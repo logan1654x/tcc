@@ -16,6 +16,7 @@ require_once __DIR__ . '/../includes/auth.php';
 </head>
 <body class="partida_pag">
 
+
 <div id="turno_container">Vez do jogador</div>
 
 <div id="ataque_boss_container">

@@ -137,7 +137,7 @@ function abrirSave(numeroSave) {
         console.log("Save carregado:", partida);
 
         // Vai direto para a partida
-        window.location.href = "partida.php";
+        window.location.href = "mapa.php";
 
     } else {
 
@@ -406,7 +406,7 @@ function createPartida() {
 
         alert("Partida salva!");
 
-        window.location.href = "partida.php";
+        window.location.href = "mapa.php";
     })
     .catch(error => {
         console.error("Erro:", error);
