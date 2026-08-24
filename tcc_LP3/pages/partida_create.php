@@ -10,19 +10,29 @@ require_once __DIR__ . '/../includes/header.php';
 
 ?>
 <script>
-    let partida_save = {
+    let partida = {
     personagens: [],
     dificuldade: null,
-    local: null
+    locais_derrotados: [],
+    save: null
 };
 </script>
 
 <div class="containerdosave">
-    <div class="caixadosave" onclick="">
-        <span class="iconesdascaixasdosave">ESPACO VAZIO</span>
-    </div> 
 
-</div>    
+    <div class="caixadosave" onclick="abrirSave(1)">
+        <span class="icone1dascaixasdosave">SAVE 1</span>
+    </div>
+
+    <div class="caixadosave" onclick="abrirSave(2)">
+        <span class="icone2dascaixasdosave">SAVE 2</span>
+    </div>
+
+    <div class="caixadosave" onclick="abrirSave(3)">
+        <span class="icone3dascaixasdosave">SAVE 3</span>
+    </div>
+
+</div>
 
 <div class="search-bar-container2" style="display: none;">
   <div class="search-wrapper2">
@@ -108,6 +118,50 @@ require_once __DIR__ . '/../includes/header.php';
 </div>
 
 <script>
+
+function abrirSave(numeroSave) {
+
+    console.log("Save selecionado:", numeroSave);
+
+    // Define qual save está sendo utilizado
+    partida.save = numeroSave;
+
+    // Verifica se já existe um save nesse slot
+    const saveExistente = localStorage.getItem("partida_save_" + numeroSave);
+
+    if (saveExistente) {
+
+        // Se já existe, carrega o save
+        partida = JSON.parse(saveExistente);
+
+        console.log("Save carregado:", partida);
+
+        // Vai direto para a partida
+        window.location.href = "partida.php";
+
+    } else {
+
+        // Se não existe, começa uma nova partida
+      partida = {
+         personagens: [],
+         dificuldade: null,
+          locais_derrotados: [],
+          save: numeroSave
+      };
+
+        console.log("Novo save criado:", partida);
+
+        // Esconde as caixas de save
+        document.querySelector('.containerdosave').style.display = 'none';
+
+        // Mostra a primeira parte da criação
+        document.querySelector('.search-bar-container2').style.display = 'block';
+
+        document.querySelector('.table-wrapper2').style.display = 'block';
+
+        document.querySelector('.selected-area2').style.display = 'block';
+    }
+}
 
 /* ===================================
    ELEMENTOS
@@ -315,39 +369,28 @@ function updateSelectedCharacters() {
         <button onclick="selecionarDificuldade('Médio')" class="btn-dificuldade">Médio</button>
         <button onclick="selecionarDificuldade('Difícil')" class="btn-dificuldade">Difícil</button>
     </div>
-    <h2>ESCOLHA O LOCAL DA PARTIDA</h2>
-    <div class="Local-partida">
-        <button onclick="selecionarLocal('deserto')" class="btn-local">Deserto</button>
-        <button onclick="selecionarLocal('floresta')" class="btn-local">Floresta</button>
-        <button onclick="selecionarLocal('montanha')" class="btn-local">Montanha</button>
-    </div>
-    <p style="color: white; font-size: 18px; margin-top: 20px;" class="mostrar_pred_part"> dificuldade: <span id="dificuldade-selecionada">Nenhuma</span> local: <span id="local-selecionado">Nenhum</span></p>
+    
+    <p style="color: white; font-size: 18px; margin-top: 20px;" class="mostrar_pred_part"> dificuldade: <span id="dificuldade-selecionada">Nenhuma</span></p>
     <button onclick="createPartida()" class="btn-create" style="display: none;">criar partida</button>
 </div>
 <script>
-    let verlocal = 0;
-    let verdif = 0;
 function selecionarDificuldade(dificuldade) {
-    verdif = 1;
+
     document.getElementById('dificuldade-selecionada').innerText = dificuldade;
+
     partida.dificuldade = dificuldade;
-    if(verlocal==1&&verdif==1){
-        document.querySelector('.btn-create').style.display = 'block';
-    }
+
+    document.querySelector('.btn-create').style.display = 'block';
 }
-function selecionarLocal(local) {
-    verlocal = 1;
-    document.getElementById('local-selecionado').innerText = local;
-    partida.local = local;
-    if(verlocal==1&&verdif==1) { 
-        document.querySelector('.btn-create').style.display = 'block';
-    }
-}
+
 function createPartida() {
 
     console.log("OBJETO:", partida);
-    
-    localStorage.setItem("partida", JSON.stringify(partida));
+
+    localStorage.setItem(
+        "partida_save_" + partida.save,
+        JSON.stringify(partida)
+    );
 
     fetch("partida_salvar.php", {
         method: "POST",

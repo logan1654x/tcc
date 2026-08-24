@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/06/2026 às 01:28
+-- Tempo de geração: 24/08/2026 às 06:57
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -130,40 +130,45 @@ INSERT INTO `habilidades` (`id`, `nome`, `origem`, `tipo`, `descricao`, `dano`, 
 
 CREATE TABLE `partida` (
   `ID_partida` int(11) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
+  `save` tinyint(4) DEFAULT NULL,
   `dif` varchar(50) DEFAULT NULL,
-  `local` varchar(70) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `locais_derrotados` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`locais_derrotados`))
+) ;
 
 --
 -- Despejando dados para a tabela `partida`
 --
 
-INSERT INTO `partida` (`ID_partida`, `dif`, `local`) VALUES
-(10, 'Médio', 'deserto'),
-(11, 'Difícil', 'deserto'),
-(12, 'Difícil', 'deserto'),
-(13, 'Difícil', 'deserto'),
-(14, 'Fácil', 'montanha'),
-(15, 'Médio', 'deserto'),
-(16, 'Difícil', 'montanha'),
-(17, 'Médio', 'floresta'),
-(18, 'Médio', 'montanha'),
-(19, 'Difícil', 'deserto'),
-(20, 'Difícil', 'floresta'),
-(21, 'Difícil', 'montanha'),
-(22, 'Difícil', 'deserto'),
-(23, 'Médio', 'montanha'),
-(24, 'Fácil', 'montanha'),
-(25, 'Fácil', 'montanha'),
-(26, 'Difícil', 'montanha'),
-(27, 'Difícil', 'montanha'),
-(28, 'Médio', 'deserto'),
-(29, 'Difícil', 'montanha'),
-(30, 'Difícil', 'montanha'),
-(31, 'Difícil', 'montanha'),
-(32, 'Difícil', 'montanha'),
-(33, 'Difícil', 'montanha'),
-(34, 'Difícil', 'montanha');
+INSERT INTO `partida` (`ID_partida`, `usuario_id`, `save`, `dif`, `locais_derrotados`) VALUES
+(10, NULL, NULL, 'Médio', NULL),
+(11, NULL, NULL, 'Difícil', NULL),
+(12, NULL, NULL, 'Difícil', NULL),
+(13, NULL, NULL, 'Difícil', NULL),
+(14, NULL, NULL, 'Fácil', NULL),
+(15, NULL, NULL, 'Médio', NULL),
+(16, NULL, NULL, 'Difícil', NULL),
+(17, NULL, NULL, 'Médio', NULL),
+(18, NULL, NULL, 'Médio', NULL),
+(19, NULL, NULL, 'Difícil', NULL),
+(20, NULL, NULL, 'Difícil', NULL),
+(21, NULL, NULL, 'Difícil', NULL),
+(22, NULL, NULL, 'Difícil', NULL),
+(23, NULL, NULL, 'Médio', NULL),
+(24, NULL, NULL, 'Fácil', NULL),
+(25, NULL, NULL, 'Fácil', NULL),
+(26, NULL, NULL, 'Difícil', NULL),
+(27, NULL, NULL, 'Difícil', NULL),
+(28, NULL, NULL, 'Médio', NULL),
+(29, NULL, NULL, 'Difícil', NULL),
+(30, NULL, NULL, 'Difícil', NULL),
+(31, NULL, NULL, 'Difícil', NULL),
+(32, NULL, NULL, 'Difícil', NULL),
+(33, NULL, NULL, 'Difícil', NULL),
+(34, NULL, NULL, 'Difícil', NULL),
+(35, NULL, NULL, 'Difícil', NULL),
+(36, NULL, NULL, 'Difícil', NULL),
+(37, 1, 1, 'Médio', NULL);
 
 -- --------------------------------------------------------
 
@@ -255,7 +260,16 @@ INSERT INTO `partida_personagem` (`ID_partida`, `ID_personagem`) VALUES
 (33, 34),
 (34, 30),
 (34, 31),
-(34, 34);
+(34, 34),
+(35, 30),
+(35, 31),
+(35, 34),
+(36, 30),
+(36, 31),
+(36, 34),
+(37, 30),
+(37, 31),
+(37, 34);
 
 -- --------------------------------------------------------
 
@@ -402,7 +416,7 @@ ALTER TABLE `habilidades`
 -- AUTO_INCREMENT de tabela `partida`
 --
 ALTER TABLE `partida`
-  MODIFY `ID_partida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `ID_partida` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `personagem`

@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/auth.php';
 
 $dados = json_decode(
     file_get_contents("php://input"),
@@ -9,18 +10,20 @@ $dados = json_decode(
 
 $conexao = getConexao();
 
+$usuario_id = $_SESSION['usuario_id'];
+$save = $dados['save'];
 $dif = $dados['dificuldade'];
-$local = $dados['local'];
 
 /* cria a partida */
 $stmt = $conexao->prepare("
-    INSERT INTO partida (dif, local)
-    VALUES (?, ?)
+    INSERT INTO partida (usuario_id, save, dif)
+    VALUES (?, ?, ?)
 ");
 
 $stmt->execute([
-    $dif,
-    $local
+    $usuario_id,
+    $save,
+    $dif
 ]);
 
 /* pega o ID gerado */
