@@ -168,9 +168,9 @@ const biomas = [
     {
         nome: "Mata Atlântica",
 
-        altura: 1,
+        altura: 2,
 
-        distancia: -2,
+        distancia: 0,
 
         descricao: "Você chegou à Mata Atlântica.",
 
