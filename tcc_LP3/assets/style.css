@@ -1417,21 +1417,21 @@ body.partida_pag {
     transform: translateX(10px) translateY(-5px) rotate(-3deg)  scale(1.05);
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
-body.deserto {
-    background-image: url("../assets/img/wall_deserto.png");
+body.caatinga {
+    background-image: url("../assets/img/caatinga.jpg");
     background-size: cover;
     background-position: center;
 }
 
 
-body.floresta {
-    background-image: url("../assets/img/wall_floresta.png");
+body.mata_atlantica {
+    background-image: url("../assets/img/caatinga.jpg");
     background-size: cover;
     background-position: center;
 }
 
 
-body.montanha {
+body.amazonia {
     background-image: url("../assets/img/wall_montanha.png");
     background-size: cover;
     background-position: center;
