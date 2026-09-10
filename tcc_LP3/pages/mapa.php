@@ -156,7 +156,7 @@ const biomas = [
     {
         nome: "Amazônia",
 
-        altura: 2,
+        altura: 1,
 
         distancia: -2,
 
