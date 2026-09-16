@@ -50,7 +50,7 @@ require_once __DIR__ . '/../includes/auth.php';
         <div id="personagem_mapa">
 
             <img
-                src="../bosses/mapa/perso.png"
+                src="../bosses/mapa/pixil-frame-0 (2).png"
                 alt="Personagem"
             >
 
