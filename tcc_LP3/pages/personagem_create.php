@@ -8,19 +8,13 @@ $repo = new PersonagemRepository();
 
 $erro = '';
 $nome = '';
-$aspecto = '';
 $classe = '';
 
-$classes = ['Cavaleiro(a)', 'Escudeiro(a)', 'Vidente', 'Mago(a)', 'Ladrão(a)',
-          'Ladino(a)', 'Servo(a)', 'Sílfide / Silfo', 'Bruxo(a)', 'Herdeiro(a)', 'Príncipe / Princesa',
-          'Bardo(a)', 'Lorde', 'Musa'];
-
-$aspectos = ['Respiração', 'Sangue', 'Vida', 'Ruína', 'Luz', 'Vazio', 'Tempo', 'Espaço', 'Mente', 'Coração', 'Odio', 'Esperança'];
+$classes = ['Lutador(a)', 'Atirador(a)', 'Medico(a)', 'Escudeiro(a)'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome     = trim($_POST['nome'] ?? '');
     $classe   = trim($_POST['classe'] ?? '');
-    $aspecto  = trim($_POST['aspecto'] ?? '');
     $caminhoImagem = null;
     
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
@@ -44,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        $personagem = Personagem::novo($nome, $classe, $aspecto, $_SESSION['usuario_id'], $caminhoImagem);
+        $personagem = Personagem::novo($nome, $classe, $_SESSION['usuario_id'], $caminhoImagem);
         $repo->salvar($personagem);
         $habilidadesRepo = new Habilidades();
         $habilidadeClasse =
@@ -87,7 +81,7 @@ require_once __DIR__ . '/../includes/header.php';
     
     <div class="form-group">
       <label for="nome">Nome do personagem</label>
-      <input type="text" id="nome" name="nome" placeholder="Ex: John Egbert" value="<?= htmlspecialchars($nome) ?>" required />
+      <input type="text" id="nome" name="nome" placeholder="Ex: Flint" value="<?= htmlspecialchars($nome) ?>" required />
     </div>
 
     <div class="form-group">
@@ -100,24 +94,6 @@ require_once __DIR__ . '/../includes/header.php';
       </select>
     </div>
 
-    <div class="form-group">
-      <label for="aspecto">Aspecto</label>
-      <select id="aspecto" name="aspecto" required>
-        <option value="">Selecione o Aspecto...</option>
-        <?php foreach ($aspectos as $t): ?>
-          <option value="<?= $t ?>" <?= ($aspecto === $t) ? 'selected' : '' ?>><?= $t ?></option>
-        <?php endforeach; ?>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="imagem">Foto do personagem (opcional)</label>
-      <div id="novaFotoPreview" class="preview-new" style="display: none;">
-        <img id="newImagePreview" class="foto-preview">
-      </div>
-      <input type="file" id="imagem" name="imagem" accept="image/jpeg,image/png,image/gif,image/webp" onchange="previewImage(this)">
-      <small>Formatos aceitos: JPG, PNG, GIF, WEBP. Máximo: 5MB</small>
-    </div>
 
     <div class="form-actions">
       <button type="submit" class="btn btn-primary">Cadastrar personagem</button>
@@ -126,26 +102,6 @@ require_once __DIR__ . '/../includes/header.php';
 
   </form>
 </div>
-
-<script>
-function previewImage(input) {
-    const previewDiv = document.getElementById('novaFotoPreview');
-    const previewImg = document.getElementById('newImagePreview');
-    
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            previewImg.src = e.target.result;
-            previewDiv.style.display = 'block';
-        }
-        reader.readAsDataURL(input.files[0]);
-    } else {
-        previewDiv.style.display = 'none';
-        previewImg.src = '';
-    }
-}
-</script>
-
 
 
 

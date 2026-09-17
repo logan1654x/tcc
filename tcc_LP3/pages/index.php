@@ -9,7 +9,7 @@ require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <div class="page-header">
-  <h2>Meus Personagens god tier</h2>
+  <h2>Meus Personagens</h2>
   <a href="personagem_create.php" class="btn btn-primary">+ Novo personagem</a>
   
    <?php if (!empty($personagens)): ?>
@@ -47,7 +47,6 @@ require_once __DIR__ . '/../includes/header.php';
           <th></th>
           <th>Nome</th>
           <th>Classe</th>
-          <th>Aspecto</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -69,7 +68,6 @@ require_once __DIR__ . '/../includes/header.php';
             <td><?= '' ?></td>
             <td><strong><?= htmlspecialchars($personagem->getNome()) ?></strong></td>
             <td><span class="badge"><?= htmlspecialchars($personagem->getClasse()) ?></span></td>
-            <td><span class="badge"><?= htmlspecialchars($personagem->getAspecto()) ?></span></td>
             <td class="acoes">
               <a href="personagem_edit.php?id=<?= $personagem->getId() ?>" class="btn btn-sm btn-editar">Editar</a>
               <a href="personagem_delete.php?id=<?= $personagem->getId() ?>" class="btn btn-sm btn-excluir">Excluir</a>
