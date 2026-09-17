@@ -56,7 +56,7 @@ require_once __DIR__ . '/../includes/header.php';
           <tr data-nome="<?= strtolower(htmlspecialchars($personagem->getNome())) ?>">
             <td style="text-align: center; vertical-align: middle;">
               <?php if ($personagem->getCaminhoImagem() && file_exists(__DIR__ . '/../' . $personagem->getCaminhoImagem())): ?>
-                <img src="/Trab_Lp3/<?= $personagem->getCaminhoImagem() ?>" 
+                <img src="/tcc_Lp3/<?= $personagem->getCaminhoImagem() ?>" 
                      alt="<?= htmlspecialchars($personagem->getNome()) ?>"
                      class="personagem-avatar"
                      style="width: 45px; height: 45px; object-fit: cover; border: 2px solid #1a1a1a;">
