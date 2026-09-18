@@ -4,6 +4,7 @@ require_once __DIR__ . '/../repository/PersonagemRepository.php';
 require_once __DIR__ . '/../repository/Habilidades.php';
 
 
+
 $repo = new PersonagemRepository();
 
 $erro = '';
@@ -41,14 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $personagem = Personagem::novo($nome, $classe, $_SESSION['usuario_id'], $caminhoImagem);
         $repo->salvar($personagem);
         $habilidadesRepo = new Habilidades();
-        $habilidadeClasse =
-        $habilidadesRepo->buscarPorOrigem($classe);
-        $habilidadeAspecto =
-        $habilidadesRepo->buscarPorOrigem($aspecto);
-        $todashabilidade = array_merge($habilidadeClasse, $habilidadeAspecto);
-        shuffle($todashabilidade);
 
-        $habilidadesSelecionadas = array_slice($todashabilidade, 0, 3);
+        $habilidadeClasse =
+            $habilidadesRepo->buscarPorOrigem($classe);
+        
+        shuffle($habilidadeClasse);
+        
+        $habilidadesSelecionadas =
+            array_slice($habilidadeClasse, 0, 3);
         foreach ($habilidadesSelecionadas as $habilidade) {
 
     $habilidadesRepo->associarAoPersonagem(

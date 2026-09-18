@@ -43,9 +43,9 @@ CREATE TABLE `habilidades` (
 --
 
 INSERT INTO `habilidades` (`id`, `nome`, `origem`, `tipo`, `descricao`, `dano`, `cura`, `custo_mana`) VALUES
-(1, 'Investida Heroica', 'Cavaleiro(a)', 'Ataque', 'Avança contra o inimigo com toda sua força.', 40, 0, 15),
-(2, 'Muralha de Aço', 'Cavaleiro(a)', 'Buff', 'Aumenta a defesa do usuário.', 0, 0, 20),
-(3, 'Golpe do Guardião', 'Cavaleiro(a)', 'Ataque', 'Golpe poderoso que protege aliados.', 50, 0, 25),
+(1, 'Investida Heroica', 'Lutador(a)', 'Ataque', 'Avança contra o inimigo com toda sua força.', 40, 0, 15),
+(2, 'Muralha de Aço', 'Escudeiro(a)', 'Buff', 'Aumenta a defesa do usuário.', 0, 0, 20),
+(3, 'Golpe do Guardião', 'Escudeiro(a)', 'Ataque', 'Golpe poderoso que protege aliados.', 50, 0, 25),
 (4, 'Defesa Leal', 'Escudeiro(a)', 'Buff', 'Aumenta a resistência de um aliado.', 0, 0, 15),
 (5, 'Cobertura Protetora', 'Escudeiro(a)', 'Controle', 'Recebe o dano destinado a um aliado.', 0, 0, 20),
 (6, 'Contra-Ataque', 'Escudeiro(a)', 'Ataque', 'Responde imediatamente após sofrer dano.', 35, 0, 15),
@@ -55,16 +55,16 @@ INSERT INTO `habilidades` (`id`, `nome`, `origem`, `tipo`, `descricao`, `dano`, 
 (10, 'Bola Arcana', 'Mago(a)', 'Ataque', 'Projétil mágico concentrado.', 45, 0, 20),
 (11, 'Explosão Mística', 'Mago(a)', 'Ataque', 'Explosão mágica em área.', 60, 0, 35),
 (12, 'Teleporte', 'Mago(a)', 'Controle', 'Reposiciona o usuário no campo.', 0, 0, 20),
-(13, 'Ataque Furtivo', 'Ladrão(a)', 'Ataque', 'Golpe com dano aumentado pelas sombras.', 55, 0, 20),
+(13, 'Ataque Furtivo', 'Atirador(a)', 'Ataque', 'Golpe com dano aumentado pelas sombras.', 55, 0, 20),
 (14, 'Roubo Rápido', 'Ladrão(a)', 'Debuff', 'Rouba recursos do alvo.', 20, 0, 15),
-(15, 'Passo Sombrio', 'Ladrão(a)', 'Buff', 'Aumenta evasão temporariamente.', 0, 0, 15),
-(16, 'Golpe Preciso', 'Ladino(a)', 'Ataque', 'Ataque direcionado a pontos vitais.', 50, 0, 20),
+(15, 'Passo Sombrio', 'Atirador(a)', 'Buff', 'Aumenta evasão temporariamente.', 0, 0, 15),
+(16, 'Golpe Preciso', 'Atirador(a)', 'Ataque', 'Ataque direcionado a pontos vitais.', 50, 0, 20),
 (17, 'Névoa de Engano', 'Ladino(a)', 'Controle', 'Confunde os inimigos.', 0, 0, 25),
-(18, 'Emboscada', 'Ladino(a)', 'Ataque', 'Ataque surpresa devastador.', 65, 0, 30),
-(19, 'Cura Menor', 'Servo(a)', 'Cura', 'Recupera vida de um aliado.', 0, 35, 15),
+(18, 'Emboscada', 'Atirador(a)', 'Ataque', 'Ataque surpresa devastador.', 65, 0, 30),
+(19, 'Cura Menor', 'Medico(a)', 'Cura', 'Recupera vida de um aliado.', 0, 35, 15),
 (20, 'Benção Protetora', 'Servo(a)', 'Buff', 'Aumenta a defesa mágica.', 0, 0, 20),
-(21, 'Sacrifício Altruísta', 'Servo(a)', 'Cura', 'Transfere parte da própria vida.', 0, 50, 25),
-(22, 'Rajada Celeste', 'Sílfide / Silfo', 'Ataque', 'Ataque baseado em ventos mágicos.', 45, 0, 20),
+(21, 'Sacrifício Altruísta', 'Medico(a)', 'Cura', 'Transfere parte da própria vida.', 0, 50, 25),
+(22, 'Rajada Celeste', 'Atirador(a)', 'Ataque', 'Ataque baseado em ventos mágicos.', 45, 0, 20),
 (23, 'Dança dos Ventos', 'Sílfide / Silfo', 'Buff', 'Aumenta velocidade e evasão.', 0, 0, 20),
 (24, 'Passo Etéreo', 'Sílfide / Silfo', 'Controle', 'Move-se sem ser alvo por um turno.', 0, 0, 25),
 (25, 'Maldição Sombria', 'Bruxo(a)', 'Debuff', 'Enfraquece o alvo.', 20, 0, 20),
@@ -91,7 +91,7 @@ INSERT INTO `habilidades` (`id`, `nome`, `origem`, `tipo`, `descricao`, `dano`, 
 (46, 'Transfusão Vital', 'Sangue', 'Cura', 'Rouba vida do alvo.', 25, 25, 20),
 (47, 'Ritual Carmesim', 'Sangue', 'Buff', 'Aumenta poder através do sangue.', 0, 0, 25),
 (48, 'Corrente Sanguínea', 'Sangue', 'Ataque', 'Manipula sangue como arma.', 50, 0, 30),
-(49, 'Florescimento', 'Vida', 'Cura', 'Grande recuperação de vida.', 0, 50, 25),
+(49, 'Florescimento', 'Medico(a)', 'Cura', 'Grande recuperação de vida.', 0, 50, 25),
 (50, 'Regeneração Natural', 'Vida', 'Passiva', 'Recupera vida por turno.', 0, 0, 0),
 (51, 'Toque Vital', 'Vida', 'Cura', 'Cura instantânea.', 0, 35, 15),
 (52, 'Colapso', 'Ruína', 'Ataque', 'Destrói a estrutura do alvo.', 55, 0, 25),
@@ -113,12 +113,12 @@ INSERT INTO `habilidades` (`id`, `nome`, `origem`, `tipo`, `descricao`, `dano`, 
 (68, 'Confusão Psíquica', 'Mente', 'Debuff', 'Confunde o inimigo.', 15, 0, 20),
 (69, 'Controle Mental', 'Mente', 'Controle', 'Assume controle temporário.', 0, 0, 35),
 (70, 'Empatia Profunda', 'Coração', 'Buff', 'Fortalece aliados emocionalmente.', 0, 0, 20),
-(71, 'Golpe da Alma', 'Coração', 'Ataque', 'Atinge diretamente a alma.', 50, 0, 25),
-(72, 'Laço Espiritual', 'Coração', 'Cura', 'Compartilha vitalidade.', 0, 40, 20),
-(73, 'Fúria Crescente', 'Odio', 'Buff', 'Aumenta dano conforme sofre ataques.', 0, 0, 20),
-(74, 'Vingança Implacável', 'Odio', 'Ataque', 'Golpe mais forte contra quem causou dano.', 60, 0, 25),
-(75, 'Ira Devastadora', 'Odio', 'Ataque', 'Explosão de ódio concentrado.', 75, 0, 35),
-(76, 'Milagre', 'Esperança', 'Cura', 'Recupera grande quantidade de vida.', 0, 60, 35),
+(71, 'Golpe da Alma', 'Lutador(a)', 'Ataque', 'Atinge diretamente a alma.', 50, 0, 25),
+(72, 'Laço Espiritual', 'Medico(a)', 'Cura', 'Compartilha vitalidade.', 0, 40, 20),
+(73, 'Fúria Crescente', 'Lutador(a)', 'Buff', 'Aumenta dano conforme sofre ataques.', 0, 0, 20),
+(74, 'Vingança Implacável', 'Lutador(a)', 'Ataque', 'Golpe mais forte contra quem causou dano.', 60, 0, 25),
+(75, 'Ira Devastadora', 'Lutador(a)', 'Ataque', 'Explosão de ódio concentrado.', 75, 0, 35),
+(76, 'Milagre', 'Medico(a)', 'Cura', 'Recupera grande quantidade de vida.', 0, 60, 35),
 (77, 'Determinação', 'Esperança', 'Buff', 'Aumenta resistência e ataque.', 0, 0, 20),
 (78, 'Chama da Esperança', 'Esperança', 'Passiva', 'Mantém o usuário firme em situações críticas.', 0, 0, 0);
 
@@ -281,7 +281,6 @@ CREATE TABLE `personagem` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `classe` varchar(50) NOT NULL,
-  `aspecto` varchar(50) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `imagem` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -290,12 +289,12 @@ CREATE TABLE `personagem` (
 -- Despejando dados para a tabela `personagem`
 --
 
-INSERT INTO `personagem` (`id`, `nome`, `classe`, `aspecto`, `usuario_id`, `imagem`) VALUES
-(30, 'Lohan Leonardo monteiro ramos', 'Cavaleiro(a)', 'Respiração', 1, 'uploads/6a231ef225a42.webp'),
-(31, 'pedrin', 'Escudeiro(a)', 'Luz', 1, 'uploads/6a259c89628f4.webp'),
-(32, 'joao', 'Bruxo(a)', 'Respiração', 1, 'uploads/6a259c9c61dbd.png'),
-(33, 'dwadwad', 'Escudeiro(a)', 'Respiração', 1, 'uploads/6a259caaed974.webp'),
-(34, 'pedrinooo', 'Cavaleiro(a)', 'Sangue', 1, 'uploads/6a25faee39f1d.jpg');
+INSERT INTO `personagem` (`id`, `nome`, `classe`, `usuario_id`, `imagem`) VALUES
+(30, 'Lohan Leonardo monteiro ramos', 'Cavaleiro(a)', 1, 'uploads/6a231ef225a42.webp'),
+(31, 'pedrin', 'Escudeiro(a)', 1, 'uploads/6a259c89628f4.webp'),
+(32, 'joao', 'Bruxo(a)', 1, 'uploads/6a259c9c61dbd.png'),
+(33, 'dwadwad', 'Escudeiro(a)', 1, 'uploads/6a259caaed974.webp'),
+(34, 'pedrinooo', 'Cavaleiro(a)', 1, 'uploads/6a25faee39f1d.jpg');
 
 -- --------------------------------------------------------
 

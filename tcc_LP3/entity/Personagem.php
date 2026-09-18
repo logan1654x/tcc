@@ -2,80 +2,113 @@
 
 class Personagem {
 
-    private int    $id;
+    private int $id;
     private string $nome;
     private string $classe;
-    private string $aspecto;
-    private int    $usuarioId;
-    private ?string $caminhoImagem; // Agora guarda o caminho do arquivo
+    private int $usuarioId;
+    private ?string $caminhoImagem;
 
     public function __construct(array $dados) {
-        $this->id           = (int) ($dados['id']           ?? 0);
-        $this->nome         = $dados['nome']         ?? '';
-        $this->classe       = $dados['classe']       ?? '';
-        $this->aspecto      = $dados['aspecto']      ?? '';
-        $this->usuarioId    = (int) ($dados['usuario_id']   ?? 0);
-        $this->caminhoImagem = $dados['caminho_imagem'] ?? $dados['imagem'] ?? null; 
+        $this->id = (int) ($dados['id'] ?? 0);
+        $this->nome = $dados['nome'] ?? '';
+        $this->classe = $dados['classe'] ?? '';
+        $this->usuarioId = (int) ($dados['usuario_id'] ?? 0);
+        $this->caminhoImagem = $dados['imagem'] ?? $dados['caminho_imagem'] ?? null;
     }
 
-    public function getId(): int { return $this->id; }
-    public function getNome(): string { return $this->nome; }
-    public function getClasse(): string { return $this->classe; }
-    public function getAspecto(): string { return $this->aspecto; }
-    public function getUsuarioId(): int { return $this->usuarioId; }
-    public function getCaminhoImagem(): ?string { return $this->caminhoImagem; }
-    
-    // Método para obter a URL completa da imagem
+    public function getId(): int {
+        return $this->id;
+    }
+
+    public function getNome(): string {
+        return $this->nome;
+    }
+
+    public function getClasse(): string {
+        return $this->classe;
+    }
+
+    public function getUsuarioId(): int {
+        return $this->usuarioId;
+    }
+
+    public function getCaminhoImagem(): ?string {
+        return $this->caminhoImagem;
+    }
+
     public function getImagemUrl(): ?string {
         if ($this->caminhoImagem) {
             return '/Trab_Lp3/' . $this->caminhoImagem;
         }
+
         return null;
     }
 
-    public static function novo(string $nome, string $classe, string $aspecto, int $usuarioId, ?string $caminhoImagem = null): Personagem {
+    public static function novo(
+        string $nome,
+        string $classe,
+        int $usuarioId,
+        ?string $caminhoImagem = null
+    ): Personagem {
+
         if ($usuarioId <= 0) {
             throw new InvalidArgumentException('Usuário inválido.');
         }
 
-        $personagem = new Personagem(['usuario_id' => $usuarioId]);
-        $personagem->alterarDados($nome, $classe, $aspecto, $caminhoImagem);
+        $personagem = new Personagem([
+            'usuario_id' => $usuarioId
+        ]);
+
+        $personagem->alterarDados(
+            $nome,
+            $classe,
+            $caminhoImagem
+        );
 
         return $personagem;
     }
 
-    public function alterarDados(string $nome, string $classe, string $aspecto, ?string $caminhoImagem = null): void {
-        $nome       = trim($nome);
-        $classe     = trim($classe);
-        $aspecto    = trim($aspecto);
+    public function alterarDados(
+        string $nome,
+        string $classe,
+        ?string $caminhoImagem = null
+    ): void {
 
-        if ($nome === '' || $classe === '' || $aspecto === '') {
-            throw new InvalidArgumentException('Nome, classe e aspecto são obrigatórios.');
+        $nome = trim($nome);
+        $classe = trim($classe);
+
+        if ($nome === '' || $classe === '') {
+            throw new InvalidArgumentException(
+                'Nome e classe são obrigatórios.'
+            );
         }
 
-        $this->nome    = $nome;
-        $this->classe  = $classe;
-        $this->aspecto = $aspecto;
-        
-        // Se um novo caminho foi fornecido, atualiza
+        $this->nome = $nome;
+        $this->classe = $classe;
+
         if ($caminhoImagem !== null) {
             $this->caminhoImagem = $caminhoImagem;
         }
     }
-    
-    // Método para remover a imagem
+
     public function removerImagem(): void {
-        // Deletar o arquivo físico se existir
-        if ($this->caminhoImagem && file_exists(__DIR__ . '/../' . $this->caminhoImagem)) {
+
+        if (
+            $this->caminhoImagem &&
+            file_exists(__DIR__ . '/../' . $this->caminhoImagem)
+        ) {
             unlink(__DIR__ . '/../' . $this->caminhoImagem);
         }
+
         $this->caminhoImagem = null;
     }
 
     public function registrarIdGerado(int $id): void {
+
         if ($id <= 0) {
             throw new InvalidArgumentException('ID inválido.');
         }
+
         $this->id = $id;
     }
 }
