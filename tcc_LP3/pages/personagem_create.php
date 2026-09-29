@@ -3,8 +3,6 @@ require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../repository/PersonagemRepository.php';
 require_once __DIR__ . '/../repository/Habilidades.php';
 
-
-
 $repo = new PersonagemRepository();
 
 $erro = '';
@@ -43,21 +41,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $repo->salvar($personagem);
         $habilidadesRepo = new Habilidades();
 
-        $habilidadeClasse =
-            $habilidadesRepo->buscarPorOrigem($classe);
+        $habilidadeClasse = $habilidadesRepo->buscarPorOrigem($classe);
         
         shuffle($habilidadeClasse);
         
-        $habilidadesSelecionadas =
-            array_slice($habilidadeClasse, 0, 3);
+        $habilidadesSelecionadas = array_slice($habilidadeClasse, 0, 3);
         foreach ($habilidadesSelecionadas as $habilidade) {
-
-    $habilidadesRepo->associarAoPersonagem(
-        $personagem->getId(),
-        $habilidade['id']
-    );
-
-}
+            $habilidadesRepo->associarAoPersonagem(
+                $personagem->getId(),
+                $habilidade['id']
+            );
+        }
         header('Location: index.php');
         exit;
     } catch (InvalidArgumentException $e) {
@@ -93,8 +87,13 @@ require_once __DIR__ . '/../includes/header.php';
           <option value="<?= $t ?>" <?= ($classe === $t) ? 'selected' : '' ?>><?= $t ?></option>
         <?php endforeach; ?>
       </select>
-    </div>
 
+      <!-- PREVIEW DA CLASSE -->
+      <div id="preview-classe" class="preview-classe" style="display: none;">
+        <img id="imagem-classe" src="" alt="Classe selecionada">
+        <span id="nome-classe-preview"></span>
+      </div>
+    </div>
 
     <div class="form-actions">
       <button type="submit" class="btn btn-primary">Cadastrar personagem</button>
@@ -104,8 +103,49 @@ require_once __DIR__ . '/../includes/header.php';
   </form>
 </div>
 
+<script>
+// ===================== PREVIEW DA CLASSE =====================
 
+// Mapa de imagens por classe (nomes exatos como aparecem no <option>)
+const imagensClasses = {
+    'Lutador(a)':   '../assets/classes/Lutador.png',
+    'Atirador(a)':  '../assets/classes/Atirador.png',
+    'Medico(a)':    '../assets/classes/Medico.png',
+    'Escudeiro(a)': '../assets/classes/Escudeiro.png'
+};
 
+const selectClasse       = document.getElementById('classe');
+const previewClasse      = document.getElementById('preview-classe');
+const imagemClasse       = document.getElementById('imagem-classe');
+const nomeClassePreview  = document.getElementById('nome-classe-preview');
 
+if (selectClasse) {
+    // Se já houver uma classe pré-selecionada (ex: após erro no formulário), mostra o preview
+    if (selectClasse.value !== '') {
+        mostrarPreviewClasse(selectClasse.value);
+    }
+
+    selectClasse.addEventListener('change', function() {
+        if (this.value === '') {
+            previewClasse.style.display = 'none';
+        } else {
+            mostrarPreviewClasse(this.value);
+        }
+    });
+}
+
+function mostrarPreviewClasse(classeSelecionada) {
+    const caminho = imagensClasses[classeSelecionada];
+
+    if (caminho) {
+        imagemClasse.src = caminho;
+        imagemClasse.alt = classeSelecionada;
+        nomeClassePreview.textContent = classeSelecionada;
+        previewClasse.style.display = 'flex';
+    } else {
+        previewClasse.style.display = 'none';
+    }
+}
+</script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
