@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . '/../includes/auth.php';
 ?>
+<script>
+    const usuarioId = <?= (int)$_SESSION['usuario_id'] ?>;
+</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -148,7 +151,9 @@ require_once __DIR__ . '/../includes/auth.php';
             return;
         }
 
-        let partida = JSON.parse(localStorage.getItem("partida"));
+       let partida = JSON.parse(
+    localStorage.getItem("partida_" + usuarioId)
+);
         if (!partida) {
             alert("Partida não encontrada!");
             return;
@@ -446,7 +451,9 @@ require_once __DIR__ . '/../includes/auth.php';
 
     // ===================== INICIAR PARTIDA =====================
     async function iniciarPartida() {
-        const partida = JSON.parse(localStorage.getItem("partida"));
+      let partida = JSON.parse(
+    localStorage.getItem("partida_" + usuarioId)
+);
 
         
         if (!partida) {

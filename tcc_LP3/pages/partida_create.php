@@ -10,6 +10,7 @@ require_once __DIR__ . '/../includes/header.php';
 
 ?>
 <script>
+    const usuarioId = <?= (int)$_SESSION['usuario_id'] ?>;
     let partida = {
     personagens: [],
     dificuldade: null,
@@ -127,7 +128,9 @@ function abrirSave(numeroSave) {
     partida.save = numeroSave;
 
     // Verifica se já existe um save nesse slot
-    const saveExistente = localStorage.getItem("partida_save_" + numeroSave);
+   const saveExistente = localStorage.getItem(
+    "partida_save_" + usuarioId + "_" + numeroSave
+   );
 
     if (saveExistente) {
 
@@ -135,10 +138,10 @@ function abrirSave(numeroSave) {
 
     console.log("Save carregado:", partida);
 
-    localStorage.setItem(
-        "partida",
-        JSON.stringify(partida)
-    );
+   localStorage.setItem(
+    "partida_" + usuarioId,
+    JSON.stringify(partida)
+);
 
 // Vai direto para o mapa
 window.location.href = "mapa.php";
@@ -391,8 +394,15 @@ function createPartida() {
 
     console.log("OBJETO:", partida);
 
+    // Salva o SAVE separado por usuário
     localStorage.setItem(
-        "partida_save_" + partida.save,
+        "partida_save_" + usuarioId + "_" + partida.save,
+        JSON.stringify(partida)
+    );
+
+    // Define essa partida como a partida ativa
+    localStorage.setItem(
+        "partida_" + usuarioId,
         JSON.stringify(partida)
     );
 

@@ -433,10 +433,10 @@ botaoEntrar.addEventListener("click", function() {
        Pega a partida que já existe.
     */
 
-    let partida =
-        JSON.parse(
-            localStorage.getItem("partida")
-        );
+   let partida =
+    JSON.parse(
+        localStorage.getItem("partida_" + <?= (int)$_SESSION['usuario_id'] ?>)
+    );
 
 
     /*
@@ -464,9 +464,9 @@ botaoEntrar.addEventListener("click", function() {
     */
 
     localStorage.setItem(
-        "partida",
-        JSON.stringify(partida)
-    );
+    "partida_" + <?= (int)$_SESSION['usuario_id'] ?>,
+    JSON.stringify(partida)
+);
 
 
     /*
