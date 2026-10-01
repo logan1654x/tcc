@@ -41,13 +41,13 @@
             $repoUser = new UsuarioRepository();
             $user = $repoUser->buscarPorId($_SESSION['usuario_id']);
             if ($user && $user->getFotoPerfil()) {
-                $fotoPerfil = '/Trab_Lp3/' . $user->getFotoPerfil();
+                $fotoPerfil = '/tcc/tcc_LP3/' . $user->getFotoPerfil();
               }
           }
         ?>
         
         <a href="usuario_perfil.php" class="foto-perfil-link">
-          <?php if ($fotoPerfil && file_exists(__DIR__ . '/..' . str_replace('/Trab_Lp3', '', $fotoPerfil))): ?>
+          <?php if ($fotoPerfil && file_exists(__DIR__ . '/..' . str_replace('/tcc/tcc_LP3', '', $fotoPerfil))): ?>
             <img src="<?= $fotoPerfil ?>" alt="Perfil" class="foto-perfil-mini">
           <?php else: ?>
             <div class="foto-perfil-placeholder">👤</div>

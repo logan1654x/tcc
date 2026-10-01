@@ -164,7 +164,7 @@ require_once __DIR__ . '/../includes/header.php';
       <div class="preview-container">
         <div class="preview-image-wrapper">
           <?php if ($usuario->getFotoPerfil() && file_exists(__DIR__ . '/../' . $usuario->getFotoPerfil())): ?>
-            <img id="currentImagePreview" src="/Trab_Lp3/<?= $usuario->getFotoPerfil() ?>" class="foto-preview-round">
+            <img id="currentImagePreview" src="/tcc/tcc_LP3/<?= $usuario->getFotoPerfil() ?>" class="foto-preview-round">
           <?php else: ?>
             <div id="currentImagePreview" class="foto-preview-placeholder-round"></div>
           <?php endif; ?>
