@@ -11,30 +11,20 @@ $classe = '';
 
 $classes = ['Lutador(a)', 'Atirador(a)', 'Medico(a)', 'Escudeiro(a)'];
 
+// Mapa de imagens por classe (caminho relativo à raiz do projeto)
+$imagensClasses = [
+    'Lutador(a)'   => 'assets/classes/Lutador.png',
+    'Atirador(a)'  => 'assets/classes/Atirador.png',
+    'Medico(a)'    => 'assets/classes/Medico.png',
+    'Escudeiro(a)' => 'assets/classes/Escudeiro.png',
+];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome     = trim($_POST['nome'] ?? '');
     $classe   = trim($_POST['classe'] ?? '');
-    $caminhoImagem = null;
-    
-    if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-        $tipo_arquivo = $_FILES['imagem']['type'];
-        $extensoes_permitidas = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
-        
-        if (in_array($tipo_arquivo, $extensoes_permitidas)) {
-            $extensao = pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
-            $nome_arquivo = uniqid() . '.' . $extensao;
-            $caminho_relativo = 'uploads/' . $nome_arquivo;
-            $caminho_absoluto = __DIR__ . '/../uploads/' . $nome_arquivo;
-            
-            if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminho_absoluto)) {
-                $caminhoImagem = $caminho_relativo;
-            } else {
-                $erro = "Erro ao salvar a imagem.";
-            }
-        } else {
-            $erro = "Formato de imagem não permitido. Use JPG, PNG, GIF ou WEBP.";
-        }
-    }
+
+    // Pega o caminho da imagem baseado na classe escolhida
+    $caminhoImagem = $imagensClasses[$classe] ?? null;
 
     try {
         $personagem = Personagem::novo($nome, $classe, $_SESSION['usuario_id'], $caminhoImagem);
@@ -72,7 +62,7 @@ require_once __DIR__ . '/../includes/header.php';
 <?php endif; ?>
 
 <div class="form-card">
-  <form method="POST" action="personagem_create.php" enctype="multipart/form-data" id="formPersonagem">
+  <form method="POST" action="personagem_create.php" id="formPersonagem">
     
     <div class="form-group">
       <label for="nome">Nome do personagem</label>
@@ -104,9 +94,6 @@ require_once __DIR__ . '/../includes/header.php';
 </div>
 
 <script>
-// ===================== PREVIEW DA CLASSE =====================
-
-// Mapa de imagens por classe (nomes exatos como aparecem no <option>)
 const imagensClasses = {
     'Lutador(a)':   '../assets/classes/Lutador.png',
     'Atirador(a)':  '../assets/classes/Atirador.png',
@@ -120,7 +107,6 @@ const imagemClasse       = document.getElementById('imagem-classe');
 const nomeClassePreview  = document.getElementById('nome-classe-preview');
 
 if (selectClasse) {
-    // Se já houver uma classe pré-selecionada (ex: após erro no formulário), mostra o preview
     if (selectClasse.value !== '') {
         mostrarPreviewClasse(selectClasse.value);
     }
