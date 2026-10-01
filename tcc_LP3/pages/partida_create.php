@@ -131,13 +131,17 @@ function abrirSave(numeroSave) {
 
     if (saveExistente) {
 
-        // Se já existe, carrega o save
-        partida = JSON.parse(saveExistente);
+       partida = JSON.parse(saveExistente);
 
-        console.log("Save carregado:", partida);
+    console.log("Save carregado:", partida);
 
-        // Vai direto para a partida
-        window.location.href = "mapa.php";
+    localStorage.setItem(
+        "partida",
+        JSON.stringify(partida)
+    );
+
+// Vai direto para o mapa
+window.location.href = "mapa.php";
 
     } else {
 
