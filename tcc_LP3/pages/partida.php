@@ -462,29 +462,42 @@ require_once __DIR__ . '/../includes/auth.php';
         }
 
         if (partida.dificuldade == "Fácil") {
+            batalha.boss.vida = 600;
+            batalha.boss.vidaMax = 600;
+        } else if (partida.dificuldade == "Médio") {
             batalha.boss.vida = 800;
             batalha.boss.vidaMax = 800;
-        } else if (partida.dificuldade == "Médio") {
-            batalha.boss.vida = 1200;
-            batalha.boss.vidaMax = 1200;
         } else {
-            batalha.boss.vida = 1400;
-            batalha.boss.vidaMax = 1400;
+            batalha.boss.vida = 1000;
+            batalha.boss.vidaMax = 1000;
         }
 
         document.body.classList.add(partida.local);
         const bossContainer = document.getElementById("boss_container");
 
-        let imgSrc = "";
-        if (partida.local === "deserto") imgSrc = "../bosses/deserto/imagem do deserto.png";
-        else if (partida.local === "floresta") imgSrc = "../bosses/floresta/boss_floresta.png";
-        else if (partida.local === "montanha") imgSrc = "../bosses/montanha/boss_montanha.png";
-        bossContainer.innerHTML = `<img src="${imgSrc}">`;
-        bossContainer.innerHTML += `
-            <div class="boss_vida">
-                ${criarBarraVida(batalha.boss.vida, batalha.boss.vidaMax, "boss")}
-            </div>
-        `;
+       let imgSrc = "";
+
+if (partida.local === "mata_atlantica") {
+    imgSrc = "../bosses/mata_atlantica/boss_mata_atlantica.png";
+} 
+else if (partida.local === "amazonia") {
+    imgSrc = "../bosses/amazonia/boss_amazonia.png";
+} 
+else if (partida.local === "caatinga") {
+    imgSrc = "../bosses/caatinga/boss_caatinga.png";
+}
+
+bossContainer.innerHTML = `
+    <img src="${imgSrc}" alt="Boss">
+    
+    <div class="boss_vida">
+        ${criarBarraVida(
+            batalha.boss.vida,
+            batalha.boss.vidaMax,
+            "boss"
+        )}
+    </div>
+`;
 
         try {
             const response = await fetch("partida_perso_pegar.php", {
