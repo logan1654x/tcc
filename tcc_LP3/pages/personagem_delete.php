@@ -39,8 +39,8 @@ require_once __DIR__ . '/../includes/header.php';
   <h3>Você tem certeza?</h3>
   <p>
     Você está prestes a excluir o personagem
-    <strong><?= htmlspecialchars($personagem->getNome()) ?></strong>
-    (<?= htmlspecialchars($personagem->getClasse()) ?>, Lv. <?= $personagem->getAspecto() ?>).
+   <strong><?= htmlspecialchars($personagem->getNome()) ?></strong>
+(<?= htmlspecialchars($personagem->getClasse()) ?>).
     Esta ação não pode ser desfeita.
   </p>
 

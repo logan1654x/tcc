@@ -82,7 +82,7 @@ require_once __DIR__ . '/../includes/header.php';
 
         <td>
           <img 
-            src="/tcc/tcc_LP3/<?= $personagem->getCaminhoImagem() ?>"
+            src="/tcc_LP3/<?= $personagem->getCaminhoImagem() ?>"
             class="personagem-avatar2"
           >
         </td>
