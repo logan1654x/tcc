@@ -403,26 +403,93 @@ require_once __DIR__ . '/../includes/auth.php';
     }
 
     const perguntasAmbientais = [
-    {
-        pergunta: "Qual atitude ajuda a reduzir o lixo nos rios?",
+{
+        pergunta: "O que pode acontecer quando muitos peixes morrem em um rio?",
         opcoes: [
-            "Jogar resíduos no bueiro",
-            "Descartar o lixo corretamente",
-            "Deixar o lixo na rua"
+            "A água fica mais limpa",
+            "Pode faltar oxigênio na água",
+            "O rio fica mais profundo"
         ],
         correta: 1
     },
     {
-        pergunta: "Qual destas é uma fonte de energia renovável?",
-        opcoes: ["Carvão mineral", "Petróleo", "Energia solar"],
+        pergunta: "Por que não devemos jogar óleo de cozinha na pia?",
+        opcoes: [
+            "Porque pode poluir a água e entupir tubulações",
+            "Porque ajuda os peixes a respirar",
+            "Porque faz a água evaporar mais rápido"
+        ],
+        correta: 0
+    },
+    {
+        pergunta: "O que as árvores ajudam a fazer nas cidades?",
+        opcoes: [
+            "Aumentar a poluição do ar",
+            "Diminuir a sombra nas ruas",
+            "Melhorar a qualidade do ar e refrescar o ambiente"
+        ],
         correta: 2
     },
     {
-        pergunta: "Qual ação ajuda a economizar água?",
+        pergunta: "Por que é importante separar o lixo reciclável?",
         opcoes: [
-            "Fechar a torneira ao escovar os dentes",
-            "Deixar a torneira aberta",
-            "Lavar a calçada com mangueira todos os dias"
+            "Para facilitar o reaproveitamento de materiais",
+            "Para produzir mais lixo",
+            "Para impedir a coleta de lixo"
+        ],
+        correta: 0
+    },
+    {
+        pergunta: "O que pode acontecer quando uma floresta é desmatada?",
+        opcoes: [
+            "Os animais sempre encontram mais alimento",
+            "Muitos animais podem perder seu habitat",
+            "A quantidade de árvores aumenta"
+        ],
+        correta: 1
+    },
+    {
+        pergunta: "Qual atitude ajuda a economizar água?",
+        opcoes: [
+            "Deixar a torneira aberta ao escovar os dentes",
+            "Lavar a calçada com mangueira todos os dias",
+            "Fechar a torneira enquanto escova os dentes"
+        ],
+        correta: 2
+    },
+    {
+        pergunta: "Por que devemos evitar o uso excessivo de plástico descartável?",
+        opcoes: [
+            "Porque pode poluir rios e mares",
+            "Porque desaparece imediatamente na natureza",
+            "Porque não afeta os animais"
+        ],
+        correta: 0
+    },
+    {
+        pergunta: "O que é uma espécie ameaçada de extinção?",
+        opcoes: [
+            "Uma espécie que vive apenas em zoológicos",
+            "Uma espécie que corre risco de desaparecer",
+            "Uma espécie que se reproduz muito rápido"
+        ],
+        correta: 1
+    },
+    {
+        pergunta: "Como a poluição do ar pode afetar as pessoas?",
+        opcoes: [
+            "Melhora a respiração",
+            "Não causa nenhum efeito",
+            "Pode causar problemas respiratórios"
+        ],
+        correta: 2
+    },
+    {
+        pergunta: "Por que preservar as nascentes é importante?",
+        opcoes: [
+            "Porque elas ajudam a abastecer rios e outros cursos de água",
+            "Porque impedem o crescimento das plantas",
+            "Porque tornam a água imprópria para consumo"
         ],
         correta: 0
     }
