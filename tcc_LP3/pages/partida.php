@@ -29,6 +29,15 @@ require_once __DIR__ . '/../includes/auth.php';
     </div>
 </div>
 
+<div id="quiz_container">
+    <div id="quiz_conteudo">
+        <h3>Quiz ambiental</h3>
+        <p id="quiz_pergunta"></p>
+        <div id="quiz_opcoes"></div>
+        <p id="quiz_feedback"></p>
+    </div>
+</div>
+
 <div id="info"></div>
 <div id="boss_container"></div>
 
@@ -393,61 +402,162 @@ require_once __DIR__ . '/../includes/auth.php';
         document.getElementById('habilidades-list').innerHTML = '<li style="text-align:center;color:#e8e507;font-weight:bold;list-style:none;">Clique no BOSS para atacar!</li>';
     }
 
+    const perguntasAmbientais = [
+    {
+        pergunta: "Qual atitude ajuda a reduzir o lixo nos rios?",
+        opcoes: [
+            "Jogar resíduos no bueiro",
+            "Descartar o lixo corretamente",
+            "Deixar o lixo na rua"
+        ],
+        correta: 1
+    },
+    {
+        pergunta: "Qual destas é uma fonte de energia renovável?",
+        opcoes: ["Carvão mineral", "Petróleo", "Energia solar"],
+        correta: 2
+    },
+    {
+        pergunta: "Qual ação ajuda a economizar água?",
+        opcoes: [
+            "Fechar a torneira ao escovar os dentes",
+            "Deixar a torneira aberta",
+            "Lavar a calçada com mangueira todos os dias"
+        ],
+        correta: 0
+    }
+];
+
+let habilidadePendente = null;
+let perguntaAtual = null;
+
+function mostrarQuizAmbiental(habilidade) {
+    habilidadePendente = habilidade;
+
+    perguntaAtual = perguntasAmbientais[
+        Math.floor(Math.random() * perguntasAmbientais.length)
+    ];
+
+    document.getElementById("quiz_pergunta").textContent =
+        perguntaAtual.pergunta;
+
+    const opcoes = document.getElementById("quiz_opcoes");
+    const feedback = document.getElementById("quiz_feedback");
+
+    opcoes.innerHTML = "";
+    feedback.textContent = "";
+
+    perguntaAtual.opcoes.forEach((opcao, indice) => {
+        const botao = document.createElement("button");
+        botao.textContent = opcao;
+        botao.onclick = () => responderQuizAmbiental(indice);
+        opcoes.appendChild(botao);
+    });
+
+    document.getElementById("quiz_container").style.display = "flex";
+}
+
+function responderQuizAmbiental(indiceEscolhido) {
+    const feedback = document.getElementById("quiz_feedback");
+
+    // Impede que o jogador clique em mais de uma resposta.
+    document.querySelectorAll("#quiz_opcoes button").forEach(botao => {
+        botao.disabled = true;
+    });
+
+    if (indiceEscolhido === perguntaAtual.correta) {
+        feedback.textContent = "Correto! Habilidade liberada.";
+        feedback.style.color = "green";
+
+        setTimeout(() => {
+            document.getElementById("quiz_container").style.display = "none";
+
+            const habilidade = habilidadePendente;
+            habilidadePendente = null;
+
+            executarHabilidade(habilidade);
+        }, 700);
+
+    } else {
+        feedback.textContent = "Resposta incorreta! Você perdeu sua ação.";
+        feedback.style.color = "red";
+
+        setTimeout(() => {
+            document.getElementById("quiz_container").style.display = "none";
+
+
+            batalha.jaAgui[jogadorSelecionado] = true;
+
+            atualizarVidaJogadores();
+            atualizar_contai();
+
+            habilidadePendente = null;
+
+            if (batalha.jaAgui.every(agiu => agiu === true)) {
+                setTimeout(() => turnoboss(), 500);
+            }
+        }, 1000);
+    }
+}
+
+function executarHabilidade(habilidade) {
+    const { nome, tipo, dano, cura } = habilidade;
+
+    if (tipo === "Cura" || tipo === "cura") {
+        iniciarSelecaoAlvo(nome, cura);
+        return;
+    }
+
+    if (tipo === "Ataque" || tipo === "ataque") {
+        ativarAtaqueBoss(dano + batalha.bonusAtaque);
+        return;
+    }
+
+    if (tipo === "Buff" || tipo === "buff") {
+        aplicarBuff(nome);
+        return;
+    }
+
+    if (tipo === "Debuff" || tipo === "debuff") {
+        aplicarDebuff(nome);
+        return;
+    }
+
+    if (tipo === "Controle" || tipo === "controle") {
+        aplicarControle(nome);
+    }
+}
+
     // ===================== FUNÇÃO PRINCIPAL DE HABILIDADE =====================
     function ver_ação(nome, tipo, dano, cura) {
-        if (batalha.turno !== "jogador") {
-            alert("Aguarde o turno do boss!");
-            return;
-        }
-
-        if (jogadorSelecionado === -1) {
-            alert("Selecione um personagem primeiro!");
-            return;
-        }
-
-        if (batalha.jaAgui[jogadorSelecionado]) {
-            alert("Este personagem já agiu neste turno!");
-            return;
-        }
-
-        // ---- CURA ----
-        if (tipo === "Cura" || tipo === "cura") {
-            if (!cura || cura <= 0) {
-                alert("Esta habilidade não tem cura!");
-                return;
-            }
-            iniciarSelecaoAlvo(nome, cura);
-            return;
-        }
-
-        // ---- ATAQUE ----
-        if (tipo === "Ataque" || tipo === "ataque") {
-            if (batalha.boss.vida <= 0) {
-                alert("O boss já foi derrotado!");
-                return;
-            }
-            ativarAtaqueBoss(dano + batalha.bonusAtaque);
-            return;
-        }
-
-        // ---- BUFF ----
-        if (tipo === "Buff" || tipo === "buff") {
-            aplicarBuff(nome);
-            return;
-        }
-
-        // ---- DEBUFF ----
-        if (tipo === "Debuff" || tipo === "debuff") {
-            aplicarDebuff(nome);
-            return;
-        }
-
-        // ---- CONTROLE ----
-        if (tipo === "Controle" || tipo === "controle") {
-            aplicarControle(nome);
-            return;
-        }
+    if (batalha.turno !== "jogador") {
+        alert("Aguarde o turno do boss!");
+        return;
     }
+
+    if (jogadorSelecionado === -1) {
+        alert("Selecione um personagem primeiro!");
+        return;
+    }
+
+    if (batalha.jaAgui[jogadorSelecionado]) {
+        alert("Este personagem já agiu neste turno!");
+        return;
+    }
+
+    if ((tipo === "Cura" || tipo === "cura") && (!cura || cura <= 0)) {
+        alert("Esta habilidade não tem cura!");
+        return;
+    }
+
+    if ((tipo === "Ataque" || tipo === "ataque") && batalha.boss.vida <= 0) {
+        alert("O boss já foi derrotado!");
+        return;
+    }
+
+    // Só depois de validar a habilidade, apresenta o quiz.
+    mostrarQuizAmbiental({ nome, tipo, dano, cura });
+}
 
     // ===================== INICIAR PARTIDA =====================
     async function iniciarPartida() {

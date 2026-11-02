@@ -2168,3 +2168,34 @@ body.mapa_pag html {
     from { opacity: 0; transform: translateY(-5px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+
+#quiz_container {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+#quiz_conteudo {
+    width: min(90%, 500px);
+    padding: 24px;
+    border-radius: 12px;
+    background: #fff;
+    color: #222;
+    text-align: center;
+}
+
+#quiz_opcoes button {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px;
+    cursor: pointer;
+}
+
+#quiz_feedback {
+    font-weight: bold;
+}
