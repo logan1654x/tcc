@@ -31,23 +31,31 @@
       </div>
     </div>
 
-    <div class="header-user">
+   <div class="header-user">
       <?php
         $nomeUser = $_SESSION['usuario_nome'] ?? 'Usuário';
+        $temFoto = false;
         $fotoPerfil = '';
         
         if (isset($_SESSION['usuario_id'])) {
             require_once __DIR__ . '/../repository/UsuarioRepository.php';
             $repoUser = new UsuarioRepository();
             $user = $repoUser->buscarPorId($_SESSION['usuario_id']);
+            
             if ($user && $user->getFotoPerfil()) {
-                $fotoPerfil = '/tcc/tcc_LP3/' . $user->getFotoPerfil();
-              }
-          }
+                // Verifica se o arquivo realmente existe no disco
+                $caminho_absoluto = __DIR__ . '/../' . $user->getFotoPerfil();
+                if (file_exists($caminho_absoluto)) {
+                    $temFoto = true;
+                    // Caminho relativo para a tag <img> (funciona para pastas dentro de /pages/ e /includes/)
+                    $fotoPerfil = '../' . $user->getFotoPerfil();
+                }
+            }
+        }
         ?>
         
         <a href="usuario_perfil.php" class="foto-perfil-link">
-          <?php if ($fotoPerfil && file_exists(__DIR__ . '/..' . str_replace('/tcc/tcc_LP3', '', $fotoPerfil))): ?>
+          <?php if ($temFoto): ?>
             <img src="<?= $fotoPerfil ?>" alt="Perfil" class="foto-perfil-mini">
           <?php else: ?>
             <div class="foto-perfil-placeholder">👤</div>
@@ -61,7 +69,7 @@
       </div>
     </div>
   </header>
-
+  
   <main class="container">
 
 <script>
