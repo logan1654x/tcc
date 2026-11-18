@@ -1,7 +1,8 @@
 <?php
-    require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/database.php';
+
 class Habilidades {
-private PDO $pdo;
+    private PDO $pdo;
 
     public function __construct() {
         $this->pdo = getConexao();
@@ -11,11 +12,7 @@ private PDO $pdo;
         $stmt = $this->pdo->prepare(
             'SELECT * FROM habilidades WHERE origem = :origem'
         );
-
-        $stmt->execute([
-            ':origem' => $origem
-        ]);
-
+        $stmt->execute([':origem' => $origem]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -23,18 +20,14 @@ private PDO $pdo;
         int $personagemId,
         int $habilidadeId
     ): void {
-
         $stmt = $this->pdo->prepare(
             'INSERT INTO personagem_habilidade
             (personagem_id, habilidade_id)
             VALUES (:personagem, :habilidade)'
         );
-
         $stmt->execute([
             ':personagem' => $personagemId,
             ':habilidade' => $habilidadeId
         ]);
     }
 }
- 
-    

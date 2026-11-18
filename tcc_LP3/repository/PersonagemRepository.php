@@ -13,67 +13,47 @@ class PersonagemRepository {
 
     /** @return Personagem[] */
     public function listarPorUsuario(int $usuarioId): array {
-
         $stmt = $this->pdo->prepare(
             'SELECT * FROM personagem
              WHERE usuario_id = :uid
              ORDER BY nome ASC'
         );
-
-        $stmt->execute([
-            ':uid' => $usuarioId
-        ]);
+        $stmt->execute([':uid' => $usuarioId]);
 
         $lista = [];
-
         foreach ($stmt->fetchAll() as $dados) {
             $lista[] = new Personagem($dados);
         }
-
         return $lista;
     }
 
     public function buscarPorId(int $id): ?Personagem {
-
         $stmt = $this->pdo->prepare(
-            'SELECT * FROM personagem
-             WHERE id = :id
-             LIMIT 1'
+            'SELECT * FROM personagem WHERE id = :id LIMIT 1'
         );
-
-        $stmt->execute([
-            ':id' => $id
-        ]);
-
+        $stmt->execute([':id' => $id]);
         $dados = $stmt->fetch();
 
         if ($dados) {
             return new Personagem($dados);
         }
-
         return null;
     }
 
     public function salvar(Personagem $personagem): void {
-
         if ($personagem->getId() > 0) {
-
             // Update
             $stmt = $this->pdo->prepare(
                 'UPDATE personagem
-                 SET nome = :nome,
-                     classe = :classe,
-                     imagem = :imagem
+                 SET nome = :nome, classe = :classe, imagem = :imagem
                  WHERE id = :id'
             );
-
             $stmt->execute([
                 ':nome'   => $personagem->getNome(),
                 ':classe' => $personagem->getClasse(),
                 ':imagem' => $personagem->getCaminhoImagem(),
                 ':id'     => $personagem->getId()
             ]);
-
             return;
         }
 
@@ -85,10 +65,8 @@ class PersonagemRepository {
         $stmt = $this->pdo->prepare(
             'INSERT INTO personagem
              (nome, classe, usuario_id, imagem)
-             VALUES
-             (:nome, :classe, :uid, :imagem)'
+             VALUES (:nome, :classe, :uid, :imagem)'
         );
-
         $stmt->execute([
             ':nome'   => $personagem->getNome(),
             ':classe' => $personagem->getClasse(),
@@ -96,9 +74,7 @@ class PersonagemRepository {
             ':imagem' => $personagem->getCaminhoImagem()
         ]);
 
-        $personagem->registrarIdGerado(
-            (int) $this->pdo->lastInsertId()
-        );
+        $personagem->registrarIdGerado((int) $this->pdo->lastInsertId());
     }
 
     public function inserir(
@@ -107,14 +83,7 @@ class PersonagemRepository {
         int $usuarioId,
         ?string $caminhoImagem = null
     ): void {
-
-        $personagem = Personagem::novo(
-            $nome,
-            $classe,
-            $usuarioId,
-            $caminhoImagem
-        );
-
+        $personagem = Personagem::novo($nome, $classe, $usuarioId, $caminhoImagem);
         $this->salvar($personagem);
     }
 
@@ -124,46 +93,29 @@ class PersonagemRepository {
         string $classe,
         ?string $caminhoImagem = null
     ): void {
-
         $personagem = $this->buscarPorId($id);
-
         if ($personagem === null) {
-            throw new RuntimeException(
-                'Personagem não encontrado.'
-            );
+            throw new RuntimeException('Personagem não encontrado.');
         }
-
-        $personagem->alterarDados(
-            $nome,
-            $classe,
-            $caminhoImagem
-        );
-
+        $personagem->alterarDados($nome, $classe, $caminhoImagem);
         $this->salvar($personagem);
     }
 
     public function excluir(int $id): void {
-
-        // Buscar o personagem para deletar a imagem física
         $personagem = $this->buscarPorId($id);
 
         if ($personagem && $personagem->getCaminhoImagem()) {
-
-            $caminho = __DIR__ . '/../' .
-                       $personagem->getCaminhoImagem();
-
-            if (file_exists($caminho)) {
-                unlink($caminho);
+            $caminhoImg = $personagem->getCaminhoImagem();
+            
+            if (strpos($caminhoImg, 'uploads/') === 0) {
+                $caminho = __DIR__ . '/../' . $caminhoImg;
+                if (file_exists($caminho)) {
+                    unlink($caminho);
+                }
             }
         }
 
-        $stmt = $this->pdo->prepare(
-            'DELETE FROM personagem
-             WHERE id = :id'
-        );
-
-        $stmt->execute([
-            ':id' => $id
-        ]);
+        $stmt = $this->pdo->prepare('DELETE FROM personagem WHERE id = :id');
+        $stmt->execute([':id' => $id]);
     }
 }
