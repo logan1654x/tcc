@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// Se já estiver logado, vai direto para a página inicial
 if (!empty($_SESSION['usuario_id'])) {
     header('Location: index.php');
     exit;
@@ -9,15 +10,23 @@ if (!empty($_SESSION['usuario_id'])) {
 require_once __DIR__ . '/../repository/UsuarioRepository.php';
 
 $erro = '';
+$sucesso = '';
 $emailFormulario = '';
 
-// Verifica se veio um erro da sessão (após redirecionamento)
+// 1. Verifica se o usuário acabou de criar uma conta (vindo do log_create.php)
+if (isset($_SESSION['sucesso_cadastro'])) {
+    $sucesso = $_SESSION['sucesso_cadastro'];
+    unset($_SESSION['sucesso_cadastro']);
+}
+
+// 2. Verifica se veio um erro de login (após redirecionamento)
 if (isset($_SESSION['erro_login'])) {
     $erro = $_SESSION['erro_login'];
     $emailFormulario = $_SESSION['email_form'] ?? '';
     unset($_SESSION['erro_login'], $_SESSION['email_form']);
 }
 
+// 3. Processa o formulário de login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
@@ -32,12 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $repo = new UsuarioRepository();
     $usuario = $repo->buscarPorEmail($email);
 
+    // A senha salva no banco usa SHA-256 (igual ao log_create.php)
     if ($usuario && hash('sha256', $senha) === $usuario->getSenha()) {
+        // Login com sucesso! Salva na sessão
         $_SESSION['usuario_id'] = $usuario->getId();
         $_SESSION['usuario_nome'] = $usuario->getNome();
+        
         header('Location: index.php');
         exit;
     } else {
+        // Falha no login
         $_SESSION['erro_login'] = 'E-mail ou senha inválidos.';
         $_SESSION['email_form'] = $email;
         header('Location: login.php');
@@ -60,8 +73,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="login-logo">CRUDspect</div>
   <h1 class="login-title">Entrar no sistema</h1>
 
+  <!-- Exibe erro se houver -->
   <?php if ($erro !== ''): ?>
     <div class="alert alert-erro"><?= htmlspecialchars($erro) ?></div>
+  <?php endif; ?>
+
+  <!-- Exibe mensagem de sucesso (quando a conta foi criada) -->
+  <?php if ($sucesso !== ''): ?>
+    <div class="alert alert-sucesso"><?= htmlspecialchars($sucesso) ?></div>
   <?php endif; ?>
 
   <form method="POST" action="login.php">
@@ -89,9 +108,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+    
+    <div class="login-divider">
+        <span>ou</span>
+    </div>
+
     <a href="log_create.php" class="btn btn-secondary btn-full">Criar nova conta</a>
   </form>
-
 </div>
 
 </body>
